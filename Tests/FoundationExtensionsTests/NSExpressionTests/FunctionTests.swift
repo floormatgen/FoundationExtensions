@@ -9,10 +9,6 @@ extension NSExpressionTests {
     @Suite
     struct FunctionTests {
         
-        private func doubleSum(_ numbers: [NSNumber]) -> Double {
-            return numbers.reduce(0.0, { $0 + $1.doubleValue })
-        }
-        
         
         // MARK: - Collection Functions
         
@@ -126,10 +122,51 @@ extension NSExpressionTests {
             [ 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 ],
         ]
         
+        func doubleSum(_ numbers: [NSNumber]) -> Double {
+            return numbers.reduce(0.0, { $0 + $1.doubleValue })
+        }
         
-        // MARK: -
         
+        // MARK: - Operator Functions
         
+        @Test("add:to:", arguments: FunctionTests.numbers, FunctionTests.numbers)
+        func testAdd(_ a: NSNumber, _ b: NSNumber) throws {
+            let function = NSExpression(forFunction: .add(NSExpression(forConstantValue: a), to: NSExpression(forConstantValue: b)))
+            try #require(function.function == "add:to:")
+            let result = try #require(function.expressionValue(with: nil, context: nil) as? Double)
+            #expect(result == a.doubleValue + b.doubleValue)
+        }
+        
+        @Test("from:subtract:", arguments: FunctionTests.numbers, FunctionTests.numbers)
+        func testSubtract(_ a: NSNumber, _ b: NSNumber) throws {
+            let function = NSExpression(forFunction: .from(NSExpression(forConstantValue: a), subtract: NSExpression(forConstantValue: b)))
+            try #require(function.function == "from:subtract:")
+            let result = try #require(function.expressionValue(with: nil, context: nil) as? Double)
+            #expect(result == a.doubleValue - b.doubleValue)
+        }
+        
+        @Test("multiply:by:", arguments: FunctionTests.numbers, FunctionTests.numbers)
+        func testMultiply(_ a: NSNumber, _ b: NSNumber) throws {
+            let function = NSExpression(forFunction: .multiply(NSExpression(forConstantValue: a), by: NSExpression(forConstantValue: b)))
+            try #require(function.function == "multiply:by:")
+            let result = try #require(function.expressionValue(with: nil, context: nil) as? Double)
+            #expect(result == a.doubleValue * b.doubleValue)
+        }
+        
+        @Test("divide:by:", arguments: FunctionTests.numbers, FunctionTests.numbers)
+        func testDivide(_ a: NSNumber, _ b: NSNumber) throws {
+            let function = NSExpression(forFunction: .divide(NSExpression(forConstantValue: a), by: NSExpression(forConstantValue: b)))
+            try #require(function.function == "divide:by:")
+            let result = try #require(function.expressionValue(with: nil, context: nil) as? Double)
+            #expect(result == a.doubleValue / b.doubleValue)
+        }
+        
+        static let numbers: [NSNumber] = [
+            1.0, 2.0, 5.0,
+            3.5, 2.25,
+            NSNumber(value: 6.0 / 7.0),
+            1000000000000.0,
+        ]
         
     }
     

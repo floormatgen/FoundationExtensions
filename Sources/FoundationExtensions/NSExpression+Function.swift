@@ -111,7 +111,7 @@ extension NSExpression {
         @available(iOS 3.0, macOS 10.4, tvOS 9.0, visionOS 1.0, watchOS 2.0, *)
         case max([NSExpression])
         
-        // Convenience Methods
+        // Variadic Convenience Methods
         
         @available(iOS 3.0, macOS 10.4, tvOS 9.0, visionOS 1.0, watchOS 2.0, *) @inlinable
         public static func average(_ expressions: NSExpression...) -> Self { .average(expressions) }
@@ -187,7 +187,7 @@ extension NSExpression {
         @available(iOS 3.0, macOS 10.5, tvOS 9.0, visionOS 1.0, watchOS 2.0, *)
         case now
         
-        // Convenience Methods
+        // Variadic Convenience Methods
         
         @available(iOS 3.0, macOS 10.5, tvOS 9.0, visionOS 1.0, watchOS 2.0, *)
         public static func median(_ expressions: NSExpression...) -> Self { .median(expressions) }
