@@ -16,7 +16,7 @@ var swiftSettings: [SwiftSetting] = [
 swiftSettings += [
     .enableExperimentalFeature("StrictConcurrency"),
 ]
-#endif
+#endif // compiler(<6.0)
 
 
 // MARK: - Targets
@@ -35,7 +35,7 @@ targets += [
         swiftSettings: swiftSettings
     ),
 ]
-#endif
+#endif // compiler(>=6.0)
 
 // MARK: - Package
 
