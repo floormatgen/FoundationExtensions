@@ -6,6 +6,9 @@ extension NSDirectionalEdgeInsets {
     
     /// Creates edge insets all with the same inset
     ///
+    /// - Parameter all:
+    ///     The common inset for all 4 dimensions
+    ///
     /// This is a convenience over calling
     /// `NSDirectionalEdgeInsets.init(top:leading:bottom:trailing:)`
     /// with the same values.

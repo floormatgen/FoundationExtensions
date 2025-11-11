@@ -32,6 +32,8 @@ var targets: [Target] = [
         swiftSettings: swiftSettings
     ),
 ]
+
+// Apple Ecosystem Targets
 #if canImport(Darwin)
 targets += [
     .target(
